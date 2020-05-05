@@ -135,28 +135,6 @@ Great! Now you have a repository on GitHub which contains all the current [**COV
 
 
 
-*** 
-
-
-
-
-
-
-
-
-## **Main Questions**
-*** 
-
-#### {.main_question_block}
-<b><u> Our main question: </u></b>
-
-1) Question 1  
-2) Question 2 etc.
-
-####
-
-
-
 
 *** 
 
@@ -214,8 +192,15 @@ pm %>%
 ####
 
 
-## **New to Rstudio**
+## **New to RStudio**
 *** 
+
+If you are new to RStudio, dont worry!
+
+First download RStudio from [here](https://rstudio.com/products/rstudio/download/#download).
+
+You will also need to have R installed.
+
 
 
 ## **Summary**
