@@ -128,7 +128,7 @@ Great! Now you have a repository on GitHub which contains all the current [**COV
 
 ### Get the pipeline files onto your computer
 
-1) Open a new project in Rstudio  (if this is new for you see [New to Rstudio])
+1) Open a new project in Rstudio  (if this is new for you see [**New to RStudio**])
 
 2) Select the Terminal tab
 
