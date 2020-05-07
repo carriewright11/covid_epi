@@ -53,7 +53,7 @@ Photo by CDC on Unsplash
 **Disclaimer**: The purpose of the [Johns Hopkins IDD COVIDScenarioPipeline](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} project is **to provide tools for analysis of COVID-19 related data**. These materials do not cover all aspects of the research process. We highly suggest that you seek external consultation from scientific experts regarding your data and the interpreation of your data. 
 
 
-This tutorial assumes that users have knowlege of R programming and limited command line experience. It does not require previous knowlege of GitHub.
+This tutorial assumes that users have knowlege of R programming and limited command line experience. It does not require previous knowlege of GitHub. The tutorial however should be doable by someone without R programming or command line experience.
 
 ## **GitHub**
 
@@ -85,7 +85,7 @@ You will see a page that looks something like this:
 knitr::include_graphics(here::here("img","GitHub.png"))
 ```
 
-2) Fill out a username, email, and password  
+2) Fill out a username (any name that works for you), email, and password  
 3) Click the green "sign up for GitHub" button  
 
 
@@ -124,19 +124,73 @@ Here you will:
 
 Great! Now you have a repository on GitHub which contains all the current [**COVIDScenarioPipeline**](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} files and code.
 
+It should look something like this:
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","YourRepo.png"))
+```
+
+Leave this open! You will want this for the next step!  
+
 ***
 
-### Get the pipeline files onto your computer
+### Get the pipeline files onto your computer  
 
-1) Open a new project in Rstudio  (if this is new for you see [**New to RStudio**])
+1) Press the green "Clone or download" button in your github repository that you just created
 
-2) Select the Terminal tab
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","YourRepoClone.png"))
+```
+
+2) This will bring up a small window. Press the small botton with an icon that looks like a clipboard. This will copy the location of your repository on GitHub.
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","clone.png"))
+```
+
+1) Open a new project in RStudio  (if this is new for you see [**New to R or RStudio**])  
+
+2) Select the Terminal tab in Rstudio  
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","Terminal.png"))
+```
 
 
+3) Go to your type the following words (but do not press enter yet):
+
+git clone
+
+4) Paste what is on your clipboard by either using keyboard shortcuts or edit --> paste in RStudio
+
+Should look something like this after the dollar sign `$`:
+
+`git clone https://github.com/yourgithubusername/COVID_Pipeline.git`
+
+Where your github username is shown inbetween "github.com" and the name of the repository you created.
 
 
+5) Press enter
+
+you should see some messages like:
+
+`Cloning into 'COVID_Pipeline'...`
+
+
+Once it is complete you will see that you now have a directory named the same as your GitHub repository that contains all the files in the repository.
+
+Great now we have the files we need on our local computer!
 
 *** 
+
+### Get the required R and Python tools onto your computer  
+
+To get the exact versions of the required [R packages](http://r-pkgs.had.co.nz/) and Python [packages](https://docs.python.org/3/tutorial/modules.html#packages), [modules](https://docs.python.org/3/tutorial/modules.html), and scripts, we can simply use something called [Docker](https://docker-curriculum.com/).
+
+If you are new to Docker and need to set up an account go to the [**New to Docker**] section of the tutorial.
+
+
+
 
 
 <!-- We will begin by loading the packages that we will need: -->
@@ -192,14 +246,84 @@ Great! Now you have a repository on GitHub which contains all the current [**COV
 <!-- #### -->
 
 
-## **New to RStudio**
+## **New to R or RStudio**
 *** 
 
-If you are new to RStudio, dont worry!
+### Dowload and install R and RStudio
 
-First download RStudio from [here](https://rstudio.com/products/rstudio/download/#download).
+If you are new to R or RStudio, dont worry! You can follow these simple steps to get started.
 
-You will also need to have R installed.
+You will need to download install [RStudio](https://rstudio.com/products/rstudio/download/#download) (and possibly [R](https://www.r-project.org/) if you do not already have it installed).
+
+To do so follow this [tutorial](https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu).
+
+
+### Create an RStudio project
+
+1) Go to File --> New Project  
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","NewProject1.png"))
+```
+
+
+2) Choose the directory for your covid project - likely you would want "New Directory" 
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","NewProject2.png"))
+```
+
+3) Select "New Project" as the Project Type 
+**Note**: you may not see all of the same options as shown here  
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","NewProject3.png"))
+```
+4) If you selected a new directory, than designate the name of that new directory and double check that it's location is somewhere on your computer that you would want. Perhaps COVID_Pipeline would be a good name. We will use this in our examples.
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","NewProject4.png"))
+```
+
+Great! Now you are ready to start using RStudio for the **COVIDScenarioPipeline**. Return to the [**Getting Started with the Pipeline**] section of the tutorial.
+
+## **New to Docker**
+*** 
+
+### What is Docker?
+### Why do I need an account?
+
+### Create a Docker Account: 
+
+1) Click this [link](https://hub.docker.com/)  
+
+You will see a page that looks something like this:  
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","Docker.png"))
+```
+2) Fill out a Docker ID (any name that works for you), email, and password  - click that you are not a robot   
+3) Click the blue "Sign Up" button  
+4) You will be taken to a new window - Select the free Community Docker Plan 
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","FreeDocker.png"))
+```
+5) Verify your account through your email  
+6) This will take you to a new window that looks like this:
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","DockerDesktop.png"))
+```
+
+Click on "Get started with Docker Desktop"
+
+7) This will take you to a window with an image like this which should have a button below for downloading Docker Desktop on your computer:  
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","DockerDesktopDownload.png"))
+```
+
+**Note**: This may take some time!
+
+***
 
 
 
