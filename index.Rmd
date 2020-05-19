@@ -55,9 +55,9 @@ Photo by CDC on Unsplash
 
 This tutorial assumes that users have knowlege of R programming and limited command line experience. It does not require previous knowlege of GitHub. The tutorial however should be doable by someone without R programming or command line experience.
 
-## **GitHub**
+## **New to GitHub**
 
-If you already have a GitHub account, you can skip this step and move onto the [**Getting Started with the Pipeline**] section.
+If you already have a GitHub account, you can skip this section and move onto the [**Getting Started**] section.
 
 ### What is GitHub?
 
@@ -92,7 +92,7 @@ knitr::include_graphics(here::here("img","GitHub.png"))
 ***
 
 
-## **Getting Started with the Pipeline**
+## **Getting Started**
 
 ### Making a pipeline repository
 
@@ -157,9 +157,9 @@ knitr::include_graphics(here::here("img","Terminal.png"))
 ```
 
 
-3) Go to your type the following words (but do not press enter yet):
+3) Type the following words in the Terminal (but do not press enter yet):
 
-git clone
+`git clone`
 
 4) Paste what is on your clipboard by either using keyboard shortcuts or edit --> paste in RStudio
 
@@ -167,7 +167,8 @@ Should look something like this after the dollar sign `$`:
 
 `git clone https://github.com/yourgithubusername/COVID_Pipeline.git`
 
-Where your github username is shown inbetween "github.com" and the name of the repository you created.
+Where your github username is shown in between "github.com" and the name of the repository you created.
+Make sure you replace this!
 
 
 5) Press enter
@@ -179,19 +180,322 @@ you should see some messages like:
 
 Once it is complete you will see that you now have a directory named the same as your GitHub repository that contains all the files in the repository.
 
+6) Now go inside the repo by typing:   
+
+`cd COVID_Pipeline` and press enter
+
+7) Now we will pull files from another github repo by typing the following command and pressing enter:  
+
+`git clone https://github.com/HopkinsIDD/COVIDScenarioPipeline.git`  
+
+
+You should get some output that looks something like this:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","clone2.png"))
+```
+
+You will also now have a directory called "COVIDScenarioPipeline".
+
+8) We also need to get large files from this repository
+
+To do this we will need [git large file storage](https://git-lfs.github.com/) also called git-lfs.
+
+So go to this [link](https://git-lfs.github.com/) and download git-lfs.
+
+Open up a new terminal window (!!but keep the other one open!!). To do this in R studio you can press on the downward arrowhead next to where it says "Terminal1", like this:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","NewTerminal.png"))
+```
+   
+   
+     
+Click on `New Terminal`.
+
+For more information about Terminals in R studio see [here](https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal).    
+
+<u>In this new terminal:</u>
+
+On mac:
+
+If you don't already have [homebrew]((https://docs.brew.sh/Installation)) do the following:
+
+a) Go to your /users/local directory by typing this command in a new terminal window:
+
+`cd /users/local` and press enter
+
+b) Then type this command:
+
+`mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew` and press enter
+
+
+Then type these commands:
+
+c) `brew install git-lfs` and enter
+
+d) `git lfs install` and enter
+
+should say git lfs initialized
+
+
+Go back to Terminal1 by clicking on the downward arrow next to Terminal2 and clicking on `Terminal1`:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","backtoTerminal1.png"))
+```
+
+Make sure you are still in the `COVIDScenarioPipeline` directory (the repository directory that you created with your second git pull command) by typing this command:
+
+`cd /home/app/covidsp/COVIDScenarioPipeline/` and enter  
+
+Type this command and enter:
+
+`git lfs pull`
+
+
 Great now we have the files we need on our local computer!
 
 *** 
 
-### Get the required R and Python tools onto your computer  
+### Accessing the required R and Python tools on your computer  
 
-To get the exact versions of the required [R packages](http://r-pkgs.had.co.nz/) and Python [packages](https://docs.python.org/3/tutorial/modules.html#packages), [modules](https://docs.python.org/3/tutorial/modules.html), and scripts, we can simply use something called [Docker](https://docker-curriculum.com/).
+To get the exact required versions of the [R packages](http://r-pkgs.had.co.nz/) and Python [packages](https://docs.python.org/3/tutorial/modules.html#packages), [modules](https://docs.python.org/3/tutorial/modules.html), and scripts, we can simply use something called [Docker](https://docker-curriculum.com/).
 
 If you are new to Docker and need to set up an account go to the [**New to Docker**] section of the tutorial.
 
+Once you are set up with Docker Desktop and Docker Hub you can proceed with the tutorial.
+
+You can use the RStudio terminal for the next docker commands or any terminal that you perfer. 
+
+For the docker commands in this section, if you run into permissions problems, you will need to put `sudo` in front of the command.
+
+1) First, we will pull the docker image from hub.docker.com (You'll only have to do this the first time).
+
+Type the following command into the **Terminal 1** tab of RStudio and press enter.
+
+`docker pull hopkinsidd/covidscenariopipeline:latest`
+
+You will see something like this:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","DockerPull.png"))
+```
+**Note**: This will take some time (possibly an hour or more)!
+
+You will know it is finished when it stops printing output and the `$` is back!
+
+You should get a message that looks something like this:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","Pullfinished.png"))
+```
+
+If that did not happen, Docker suggests this:
+
+> Depending on how you've installed docker on your system, you might see a permission denied error after running the above command. If you're on a Mac, make sure the Docker engine is running. If you're on Linux, then prefix your docker commands with sudo. Alternatively, you can create a docker group to get rid of this issue.
+
+What did we just do exactly?
+
+The pull command caused Docker to grab the `latest` version of the `hopkinsidd/covidscenariopipeline` image and put it on your local machine.
+
+If you type `Docker images` you will now see `hello-world` and `hopkinsidd/covidscenariopipeline` listed as repositories on your computer.
 
 
+Now when we run the `hopkinsidd/covidscenariopipeline` image Docker, we can run commands in the `hopkinsidd/covidscenariopipeline` container. This is similar to running a command in a virtual machine but doesnt require booting up a virtual machine.
 
+
+Here are the defintions of the various Docker terms according to Docker:  
+
+> Images - The blueprints of our application which form the basis of containers. In the demo above, we used the docker pull command to download the busybox image.
+Containers - Created from Docker images and run the actual application. We create a container using docker run which we did using the busybox image that we downloaded. A list of running containers can be seen using the docker ps command.
+Docker Daemon - The background service running on the host that manages building, running and distributing Docker containers. The daemon is the process that runs in the operating system which clients talk to.
+Docker Client - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as Kitematic which provide a GUI to the users.
+Docker Hub - A registry of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.
+ 
+
+2) Now you will run the docker container with your current directory mounted as `/home/app/covidsp/` by typing in one of the following commands (depening on your operating system):
+
+On Linux or Mac:  
+
+`docker run -it --rm -v "$(pwd)":/home/app/covidsp hopkinsidd/covidscenariopipeline`  
+
+On Windows:    
+
+`docker run -it --rm -v %CD%:/home/app/covidsp hopkinsidd/covidscenariopipeline`  
+
+the `-it` flag creates an interactive tty to allow us to run commands in the container.
+
+Great! now you are inside the docker container you can take a look around the files located here by typing `ls`.
+
+you will see something like this:
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","ls.png"))
+```
+
+You might also notice that the information to the left of the `$` has changed as you are now in the container
+
+
+`docker ps` shows you the containers that are running
+
+`docker ps -a` shows you containers that were run in the past and currently running containers
+
+You are running the container from the `/home/app` directory.
+
+
+4) Now, the Docker container needs some local R packages installed. We can do that by typing the following command (followed by enter):  
+
+`Rscript local_install.R`
+
+If there's a prompt enter one or more numbers, or an empty line to skip updates:, just hit <Enter>.
+
+You will see lots of output printed to the screen.
+
+5) We also need to mount the COVIDScenarioPipeline files in the Docker. To do this we will need Terminal2 again. (If you closed it earlier, no worries, just create another new terminal)
+
+Then run the following command on Linux or Mac:
+
+`docker run -it --rm -v "$(pwd)":/home/app/covidsp -v "COVIDScenarioPipeline":/home/app/covidsp/COVIDScenarioPipeline hopkinsidd/covidscenariopipeline`
+
+Or run the following command on Windows:   (need to check this one... maybe no quotes???)   
+
+`docker run -it --rm -v %CD%::/home/app/covidsp -v "COVIDScenarioPipeline":/home/app/covidsp/COVIDScenarioPipeline hopkinsidd/covidscenariopipeline`
+
+6) We also need some R packages installed here: (THINK WE NEED THIS BUT NOT SURE)
+`Rscript COVIDScenarioPipeline/local_install.R`
+
+
+***
+## **Generating Data**
+***
+### Generate geodata.csv and mobility.csv
+
+1) go to the terminal1 tab - or the terminal where you were first running DOCKER 
+1) go to covidsp directory
+In the terminal type: `cd /home/app/covidsp/` and press enter
+2) Use an Rscript to create the files:
+In the terminal type the following command and press enter:
+
+`Rscript /home/app/covidsp/COVIDScenarioPipeline/R/scripts/build_US_setup.R -c config.yml -p /home/app/covidsp/COVIDScenarioPipeline`
+
+3) go to the data directory 
+In the terminal type: `cd /home/app/covidsp/data/` and press enter
+Then type: `ls -l` and press enter.
+
+You should see some files named: `mobility.csv` and `geodata.csv` that were created today.
+
+***
+
+### Generate Shapefiles
+
+
+To do this you will need a key to gain access to an API about the census data.
+
+To gain access go to this [link](https://api.census.gov/data/key_signup.html).
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","Key.png"))
+```
+
+
+After you fill out the information and press the "Submit Key Request" button, you will receive a message like this:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","KeyMessage.png"))
+```
+
+Check your email for an email to acctivate your API key.  
+
+Once complete you will be taken to a page that says this:
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","ActivatedKey.png"))
+```
+**Note:** if this doesnt work the first time request a new key
+
+Now that you have the API key, you need to update the config.yml file with your key.
+
+To do this we you can either use your favorite editor like vim, or you can simply open the config.yml file in RStudio.
+
+This will allow you to easily modify and update the config file with your key.
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","find_config.png"))
+```
+
+This will open up the file in an editor in RStudio which will allow you to copy paste your API key.
+
+**Note:** Make sure you copy paste your API key before the comment (`# For use with the tidycensus package`.
+) or replace the comment like below:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","key_in_config.png"))
+```
+
+Now to create our shape files we will run the following commands:
+
+`R`  
+`config <- covidcommon::load_config("config.yml")`
+`tidycensus::census_api_key(key = config$importation$census_api_key)`  
+`covidImportation::get_county_pops(c('HI'), 'HI')`  
+
+In this example we are running the pipeline for Hawaii. If you wanted to run the pipeline for a different state you would replace the state abbreviation.
+
+After running these commands you will get some output like this: (don't worry if you see some warnings about `dplyr`)
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","GettingShape.png"))
+```
+
+To exit R we need to run the following command:
+
+`q()`  
+
+
+Now if we go to our data directory we will see new files!  
+
+`cd /home/app/covidsp/data/`  
+`ls` to view the files
+
+We now see a new `county_pops_2010.csv` file and a `shp` directory. (shp only shows up if we do more changes to the config!!)
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","newShapeFiles.png"))
+```
+
+Inside the `shp` directory (see inside with `cd shp`, followed by `ls`) you will see several new files:
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","shpDirectory.png"))
+```
+
+
+## **Edit the rest of the Config file**
+
+
+## **Build and Run**
+1. `cd /home/app/covidsp/` 
+2. `Rscript COVIDScenarioPipeline/R/scripts/make_makefile.R -c config.yml`
+3. `mkdir notebooks`
+4. `cd notebooks`
+5. `mkdir HI_today`
+6. `cd /home/app/covidsp/`
+7. `Rscript -e 'rmarkdown::draft("notebooks/HI_today/HI_report.Rmd",template="state_report",package="report.generation",edit=FALSE)'`
+8.`cd notebooks/HI_today/`
+9. `ls`
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","HI_report.png"))
+```
+10.`cd /home/app/covidsp/`
+11. `echo 'rmarkdown::render("notebooks/HI_today/HI_report.Rmd", params=list(state_usps="HI"))' >compile_Rmd.R`
+12. `make`
+
+
+### If you want to rerun 
+1.`cd /home/app/covidsp/`  
+2. `ls -l`  
+3. mv `.files` `.oldfiles`  
+4. `make`  
+
+(hmmm may need to remove other old files... like shp files etc...)
 
 <!-- We will begin by loading the packages that we will need: -->
 
@@ -285,15 +589,19 @@ knitr::include_graphics(here::here("img","NewProject3.png"))
 knitr::include_graphics(here::here("img","NewProject4.png"))
 ```
 
-Great! Now you are ready to start using RStudio for the **COVIDScenarioPipeline**. Return to the [**Getting Started with the Pipeline**] section of the tutorial.
+Great! Now you are ready to start using RStudio for the **COVIDScenarioPipeline**. Return to the [**Getting Started**] section of the tutorial.
 
 ## **New to Docker**
 *** 
 
 ### What is Docker?
+Docker allows people to have the same software and all of the required dependendencies easily. It is similar to a virtual machine, which allows you to run an instance of a particular operating system with the particular software. However, Docker uses your own operating system, so it doesnt require as much overhead.
+
+Check out this [guide](https://docker-curriculum.com/) for more information.
+
 ### Why do I need an account?
 
-### Create a Docker Account: 
+### Create a Docker Account and Download Docker Desktop: 
 
 1) Click this [link](https://hub.docker.com/)  
 
@@ -321,22 +629,33 @@ Click on "Get started with Docker Desktop"
 knitr::include_graphics(here::here("img","DockerDesktopDownload.png"))
 ```
 
-**Note**: This may take some time!
+**Note**: This may take some time (possibly more than hour)!
+
+### Installing Docker Desktop
+
+1) To install Docker follow the instructions for either:
+ - [Mac](https://docs.docker.com/docker-for-mac/install/)
+ - [Windows](https://docs.docker.com/docker-for-windows/install/)
+ - [Linux](https://docs.docker.com/engine/install/ubuntu/)
+
+
+2) Once installed the directions should have gotten you to the point where you can run
+`docker run hello-world` from the terminal tab in RStudio.  (by typing it in and pressing enter)
+
+This should give some ouput that starts like this:
+
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","Hello-World.png"))
+```
+
+Great! Now you are ready to return to the [Accessing the required R and Python tools on your computer] section of the tutorial (just click the name of the section here to return to it).
 
 ***
 
 
 
-## **Summary**
-*** 
 
 
-## **Helpful Links**
-*** 
 
-<u>Packages used in this tutorial: </u>
 
- Package   | Use                                                                         
----------- |-------------
-[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data  
-[readr](https://readr.tidyverse.org/){target="_blank"}      | to import the CSV file data  
+
