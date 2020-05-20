@@ -375,9 +375,11 @@ Or run the following command on Windows:   (need to check this one... maybe no q
 1) go to covidsp directory
 In the terminal type: `cd /home/app/covidsp/` and press enter
 2) Use an Rscript to create the files:
-In the terminal type the following command and press enter:
+In the terminal type the following commands and press enter:
 
-`Rscript /home/app/covidsp/COVIDScenarioPipeline/R/scripts/build_US_setup.R -c config.yml -p /home/app/covidsp/COVIDScenarioPipeline`
+`Rscript -e 'devtools::install_github("HopkinsIDD/covidImportation", ref = "v1.6")'`
+
+`Rscript /home/app/covidsp/COVIDScenarioPipeline/R/scripts/build_US_setup.R -c config.yml -p /home/app/covidsp/COVIDScenarioPipeline -w TRUE`
 
 3) go to the data directory 
 In the terminal type: `cd /home/app/covidsp/data/` and press enter
@@ -451,6 +453,9 @@ To exit R we need to run the following command:
 
 `q()`  
 
+and in response to this question: Save workspace image? [y/n/c]:
+
+`n`
 
 Now if we go to our data directory we will see new files!  
 
@@ -492,7 +497,7 @@ knitr::include_graphics(here::here("img","HI_report.png"))
 ### If you want to rerun 
 1.`cd /home/app/covidsp/`  
 2. `ls -l`  
-3. mv `.files` `.oldfiles`  
+3. `mv .files .oldfiles`  
 4. `make`  
 
 (hmmm may need to remove other old files... like shp files etc...)
