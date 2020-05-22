@@ -324,7 +324,11 @@ On Windows:
 
 `docker run -it --rm -v %CD%:/home/app/covidsp hopkinsidd/covidscenariopipeline`  
 
-the `-it` flag creates an interactive tty to allow us to run commands in the container.
+The `-it` flag creates an interactive tty to allow us to run commands in the container.
+
+You may need to replace the %CD% with your absolute path for the directory you are working in on your machine. 
+
+Something like this: `docker run -it --rm -v C:/Users/UserName/DirectoryName:/home/app/covidsp hopkinsidd/covidscenariopipeline`  
 
 Great! now you are inside the docker container you can take a look around the files located here by typing `ls`.
 
@@ -475,6 +479,7 @@ knitr::include_graphics(here::here("img","shpDirectory.png"))
 
 ## **Edit the rest of the Config file**
 
+I changed setup_name: minimal to setup_name: HI
 
 ## **Build and Run**
 1. `cd /home/app/covidsp/` 
@@ -490,9 +495,10 @@ knitr::include_graphics(here::here("img","shpDirectory.png"))
 knitr::include_graphics(here::here("img","HI_report.png"))
 ```
 10.`cd /home/app/covidsp/`
-11. `echo 'rmarkdown::render("notebooks/HI_today/HI_report.Rmd", params=list(state_usps="HI"))' >compile_Rmd.R`
-12. `make`
-
+11.`echo 'rmarkdown::render("notebooks/HI_today/HI_report.Rmd", params=list(state_usps="HI"))' >compile_Rmd.R`
+12.`make clean`
+13.`make`
+14. 
 
 ### If you want to rerun 
 1.`cd /home/app/covidsp/`  
@@ -502,6 +508,15 @@ knitr::include_graphics(here::here("img","HI_report.png"))
 
 (hmmm may need to remove other old files... like shp files etc...)
 
+
+```{r letter-a, echo=FALSE}
+question("What number is the letter A in the English alphabet?",
+  answer("8"),
+  answer("14"),
+  answer("1", correct = TRUE),
+  answer("23")
+)
+```
 <!-- We will begin by loading the packages that we will need: -->
 
 <!-- ```{r} -->
