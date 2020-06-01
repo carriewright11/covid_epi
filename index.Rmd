@@ -558,7 +558,7 @@ knitr::include_graphics(here::here("img","Seeding.png"))
 
 ### Edit config file for modeling Location other than US state
 
-See here for details: statehttps://github.com/HopkinsIDD/COVID19_Minimal/wiki/Getting-Started-Non-US-Location
+See here for details: https://github.com/HopkinsIDD/COVID19_Minimal/wiki/Getting-Started-Non-US-Location
 
 ***
 
