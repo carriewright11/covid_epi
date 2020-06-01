@@ -55,6 +55,32 @@ Photo by CDC on Unsplash
 
 This tutorial assumes that users have knowlege of R programming and limited command line experience. It does not require previous knowlege of GitHub. The tutorial however should be doable by someone without R programming or command line experience.
 
+## **Summary**
+
+Welcome to the Johns Hopkins University Infectious Disease Dynamics COVID-19 Working Group's COVID Scenario Pipeline, a flexible modeling framework that projects epidemic trajectories and healthcare impacts under different suites of interventions in order to aid in scenario planning. 
+
+In otherwords, this pipeline can help predict the effectiveness of an intervention in specific locations.
+
+
+This tutorial will get you started with using the [Johns Hopkins IDD COVIDScenarioPipeline](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} by running the pipeline on fake data from Hawaii.
+
+
+The model can applied to different spatial scales given shapefiles, population data, and COVID-19 confirmed case data. There are multiple components to the pipeline, which may be characterized as follows: 
+
+1) model/epidemic seeding: flight data and other known epidemic data
+2) epidemic dynamics: disease transmission data and non-pharmaceutical intervention scenarios   
+3) calculation of health outcomes: hospital and ICU admissions and bed use, ventilator use, and deaths 
+4) summarization of model outputs into an easy to read report 
+
+The pipeline simulates the influence of interventions for a given location and can adjust for demographics of that location and neighboring locations.
+
+Please post questions to GitHub issues with the question tag. We are prioritizing direct support for individuals engaged in public health planning and emergency response.
+
+For more information on getting started, please visit our Getting Started wiki at [HopkinsIDD/COVID19_Minimal](https://github.com/HopkinsIDD/COVID19_Minimal). 
+
+This open-source project is licensed under GPL v3.0.
+
+
 ## **New to GitHub**
 
 If you already have a GitHub account, you can skip this section and move onto the [**Getting Started**] section.
@@ -423,7 +449,7 @@ Now that you have the API key, you need to update the config.yml file with your 
 
 To do this we you can either use your favorite editor like vim, or you can simply open the config.yml file in RStudio.
 
-This will allow you to easily modify and update the config file with your key.
+This will allow you to easily modify and update the config file with your key to replace the text that says: `<your census api key>`.
 
 ```{r, echo = FALSE, out.width="700px", fig.align='center'}
 knitr::include_graphics(here::here("img","find_config.png"))
@@ -445,7 +471,9 @@ Now to create our shape files we will run the following commands:
 `tidycensus::census_api_key(key = config$importation$census_api_key)`  
 `covidImportation::get_county_pops(c('HI'), 'HI')`  
 
-In this example we are running the pipeline for Hawaii. If you wanted to run the pipeline for a different state you would replace the state abbreviation.
+In this example we are running the pipeline for Hawaii (start with this to see if you can get the pipeline to work). Later if you wanted to run the pipeline for a different state you would replace the state abbreviation. Like this for Maryland:
+
+`covidImportation::get_county_pops(c('MD'), 'MD')` 
 
 After running these commands you will get some output like this: (don't worry if you see some warnings about `dplyr`)
 
@@ -455,11 +483,11 @@ knitr::include_graphics(here::here("img","GettingShape.png"))
 
 To exit R we need to run the following command:
 
-`q()`  
+type `q()`  and press enter
 
 and in response to this question: Save workspace image? [y/n/c]:
 
-`n`
+type `n` and press enter
 
 Now if we go to our data directory we will see new files!  
 
@@ -476,10 +504,63 @@ Inside the `shp` directory (see inside with `cd shp`, followed by `ls`) you will
 knitr::include_graphics(here::here("img","shpDirectory.png"))
 ```
 
+***
 
 ## **Edit the rest of the Config file**
 
-I changed setup_name: minimal to setup_name: HI
+The config file `config.yml` controls all of the options for running the pipeline that are currently available.
+More details can be found here:https://github.com/HopkinsIDD/COVID19_Minimal/wiki/Config-File-Options.
+
+Again, to edit the config file, you can find the file named `config.yml` in the Files pane of RStudio and click on the file name to open it in the RStudio editor.
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","find_config.png"))
+```
+
+There are two major different config setups to consider: modeling one or more US state, or modeling a location that is not a US state.
+
+Either way, the first thing to edit is the first line that is not a comment - the first line not preceded by `##`.
+
+Change this line to say FALSE instead of TRUE:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","config_1st.png"))
+```
+
+This is just to make sure people edit the config.yml.
+
+For following along with this tutorial to make sure the pipeline runs, please continue with our Hawaii example:
+
+### Edit config file for modeling US state
+
+Change the `modeled_states:` to `modeled_states:` 
+`                                               -HI`
+
+Change the `setup_name: minimal` to `setup_name: HI`.
+
+Change `popnodes: population` to `popnodes: pop2010`
+
+Make sure  `shaefile:` and `shapefile_name:` are both  `shapefile: shp/counties_2010_HI.shp`.
+
+Thus the `spatial_setup:` section of the config file should match this:
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","config1stsect.png"))
+```
+
+Leave the next section the same and scroll down to the `seeding:` section.
+
+Change  `folder_path: imporation/minimal/ to ` folder_path: importation/HI/`.
+
+```{r, echo = FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics(here::here("img","Seeding.png"))
+```
+
+### Edit config file for modeling Location other than US state
+
+See here for details: statehttps://github.com/HopkinsIDD/COVID19_Minimal/wiki/Getting-Started-Non-US-Location
+
+***
 
 ## **Build and Run**
 1. `cd /home/app/covidsp/` 
@@ -509,14 +590,7 @@ knitr::include_graphics(here::here("img","HI_report.png"))
 (hmmm may need to remove other old files... like shp files etc...)
 
 
-```{r letter-a, echo=FALSE}
-question("What number is the letter A in the English alphabet?",
-  answer("8"),
-  answer("14"),
-  answer("1", correct = TRUE),
-  answer("23")
-)
-```
+
 <!-- We will begin by loading the packages that we will need: -->
 
 <!-- ```{r} -->
