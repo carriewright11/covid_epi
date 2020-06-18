@@ -7,46 +7,35 @@ li.toctree-l2:first-child {
     padding: .2em;
     border: 1px solid black;
     border-radius: 5px;
-    background: #4B0082;
-    color: white;
+    background: #9999ff;
+    color: black;
     font-weight: bold;
 }
+
+
 
 .linux {
     margin: .2em;
     padding: .2em;
     border: 1px solid black;
     border-radius: 5px;
-    background: #000000;
-    color: white;
+    background: #ffcc99;
+    color: black;
     font-weight: bold;
 }
 
-.main_question_block {
-    margin: .2em;
-    padding: .2em;
-    border: 1px solid black;
-    border-radius: 5px;
-    background: #000000;
-    color: white;
-    font-weight: bold;
-}
+
 .windows {
    margin: .2em;
     padding: .2em;
     border: 1px solid black;
     border-radius: 5px;
-    background: #006666;
-    color: white;
+    background: #00ff99;
+    color: blaxk;
     font-weight: bold;
 }
 
 
-.green-outline {
-   background-color: #00ff99;
-   padding:10px;
-   display: inline-block;
-}
 
 .disclaimer_block {
     margin: .2em;
