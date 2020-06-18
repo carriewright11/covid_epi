@@ -100,13 +100,13 @@ This open-source project is licensed under GPL v3.0.
 If you are new to GitHub, please see the [**New to GitHub**] section before proceeding. 
 
 
-<!-- There are two separate repos that users need to clone: -->
+There are two separate GitHub repositories that users need to clone/download:
 
-<!-- One is the [HopkinsIDD/COVID19_Minimal template]((https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}), which is a template spatial repository for location-specific files. -->
+One is the [**HopkinsIDD/COVID19_Minimal template**](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} repository, which is a template spatial repository for location-specific files. This will allow us to run the model for a specific location. We will call the directory containing these files and scripts `LocationX` and prepares the data with a directory structure in a way that the model expects.
 
-<!-- The second is the HopkinsIDD/COVIDScenarioPipeline repository (usually located inside the the spatial repository folder). The manuscript describes this a little bit if it is unclear. -->
+The second is the [**HopkinsIDD/COVIDScenarioPipeline**](https://github.com/HopkinsIDD/COVIDScenarioPipeline){target="_blank"} repository, which we will download inside the `LocationX` directory. This is where the scripts and files to actually run the model will be located. 
 
-First navigate to the Johns Hopkins IDD **HopkinsIDD/COVID19_Minimal template** GitHub repository: by clicking [here.](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}
+First navigate to the Johns Hopkins IDD **HopkinsIDD/COVID19_Minimal template**  repository: by clicking [here.](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}
 
 
 You will see a page that looks like this:
@@ -129,7 +129,7 @@ knitr::include_graphics(here::here("img","GenerateRepo.png"))
 
 Here you will:  
 
-1) Provide the name for your repository that you are about to create - "COVID_Pipeline" would work 
+1) Provide the name for your repository that you are about to create - "COVID_Loc_X" would work 
 2) Decide if you want your repository to be Public or Private   
 3) Press the green "Create repository from template" button  
 
@@ -176,7 +176,7 @@ knitr::include_graphics(here::here("img","Terminal.png"))
 
 Should look something like this after the dollar sign `$`:
 
-`git clone https://github.com/yourgithubusername/COVID_Pipeline.git`
+`git clone https://github.com/yourgithubusername/COVID_Loc_X.git`
 
 Where your github username is shown in between "github.com" and the name of the repository you created.
 Make sure you replace this!
@@ -186,14 +186,14 @@ Make sure you replace this!
 
 you should see some messages like:
 
-`Cloning into 'COVID_Pipeline'...`
+`Cloning into 'COVID_Loc_X'...`
 
 
 Once it is complete you will see that you now have a directory named the same as your GitHub repository that contains all the files in the repository.
 
 6) Now go inside the repo by typing:   
 
-`cd COVID_Pipeline` and press enter
+`cd COVID_Loc_X` and press enter
 
 7) Now we will pull files from another github repo by typing the following command and pressing enter:  
 
@@ -734,7 +734,7 @@ knitr::include_graphics(here::here("img","NewProject2.png"))
 ```{r, echo = FALSE, out.width="400px", fig.align='center'}
 knitr::include_graphics(here::here("img","NewProject3.png"))
 ```
-4) If you selected a new directory, than designate the name of that new directory and double check that it's location is somewhere on your computer that you would want. Perhaps COVID_Pipeline would be a good name. We will use this in our examples.
+4) If you selected a new directory, than designate the name of that new directory and double check that it's location is somewhere on your computer that you would want. Perhaps COVID_Loc_X would be a good name. We will use this in our examples.
 
 ```{r, echo = FALSE, out.width="400px", fig.align='center'}
 knitr::include_graphics(here::here("img","NewProject4.png"))
