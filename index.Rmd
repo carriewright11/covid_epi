@@ -81,48 +81,23 @@ For more information on getting started, please visit our Getting Started wiki a
 This open-source project is licensed under GPL v3.0.
 
 
-## **New to GitHub**
-
-If you already have a GitHub account, you can skip this section and move onto the [**Getting Started**] section.
-
-### What is GitHub?
-
-GitHub is a site that allows users to **host** and **manage** code and data files. Thus, you can **store** your code on the web so that you and others can easily access it (and so that is safe if something happens to your computer!).
-
-It is especailly useful for what is called [version control](https://en.wikipedia.org/wiki/Version_control){target="_blank"} which allows you to **track changes** to documents overtime. 
-
-So although it is intended for version control of code, you can actually use GitHub for version control of many types of documents.
-
-### Why do I need an account?
-
-By signing up for an account you can easily access up-to-date files and code for the **COVIDScenarioPipeline** to allow you to easily run the pipeline on your data.
-
-Better yet, if you learn more about GitHub, you can also use your account to save the files and code for your analysis and track changes over time. You can share your analysis privately with just your team or you can even make it public for others to use.
-
-To learn more about GitHub see [here](https://guides.github.com/activities/hello-world/){target="_blank"}.
-
-
-### Create a GitHub Account: 
-
-1) Click this [link](https://github.com/)  
-
-You will see a page that looks something like this:  
-```{r, echo = FALSE, out.width="400px", fig.align='center'}
-knitr::include_graphics(here::here("img","GitHub.png"))
-```
-
-2) Fill out a username (any name that works for you), email, and password  
-3) Click the green "sign up for GitHub" button  
-
-
-***
-
 
 ## **Getting Started**
 
 ### Making a pipeline repository
 
-First navigate to the Johns Hopkins IDD **COVIDScenarioPipeline** github repository: by clicking [here. ](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}
+
+If you are new to GitHub, please see the [**New to GitHub**] section before proceeding. 
+
+
+<!-- There are two separate repos that users need to clone: -->
+
+<!-- One is the [HopkinsIDD/COVID19_Minimal template]((https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}), which is a template spatial repository for location-specific files. -->
+
+<!-- The second is the HopkinsIDD/COVIDScenarioPipeline repository (usually located inside the the spatial repository folder). The manuscript describes this a little bit if it is unclear. -->
+
+First navigate to the Johns Hopkins IDD **HopkinsIDD/COVID19_Minimal template** GitHub repository: by clicking [here.](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}
+
 
 You will see a page that looks like this:
 ```{r, echo = FALSE, out.width="800px"}
@@ -148,7 +123,7 @@ Here you will:
 2) Decide if you want your repository to be Public or Private   
 3) Press the green "Create repository from template" button  
 
-Great! Now you have a repository on GitHub which contains all the current [**COVIDScenarioPipeline**](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} files and code.
+Great! Now you have a repository on GitHub which contains all the current [**HopkinsIDD/COVID19_Minimal template**](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} files and code.
 
 It should look something like this:
 
@@ -243,7 +218,9 @@ For more information about Terminals in R studio see [here](https://support.rstu
 
 <u>In this new terminal:</u>
 
-On mac:
+#### {.mac}
+
+<u>On mac:</u>
 
 If you don't already have [homebrew]((https://docs.brew.sh/Installation)) do the following:
 
@@ -262,8 +239,21 @@ c) `brew install git-lfs` and enter
 
 d) `git lfs install` and enter
 
-should say git lfs initialized
+Should  get a message saying: `git lfs initialized`.
 
+####
+
+#### {.windows}
+<u>On windows:</u>  
+Follow the directions located [here](https://help.github.com/en/github/managing-large-files/installing-git-large-file-storage).
+
+####
+
+#### {.linux}
+<u>On linux:</u>  
+Follow the directions located [here](https://help.github.com/en/github/managing-large-files/installing-git-large-file-storage).
+
+####
 
 Go back to Terminal1 by clicking on the downward arrow next to Terminal2 and clicking on `Terminal1`:
 
@@ -283,6 +273,7 @@ Type this command and enter:
 Great now we have the files we need on our local computer!
 
 *** 
+
 
 ### Accessing the required R and Python tools on your computer  
 
@@ -342,13 +333,19 @@ Docker Hub - A registry of Docker images. You can think of the registry as a dir
 
 2) Now you will run the docker container with your current directory mounted as `/home/app/covidsp/` by typing in one of the following commands (depening on your operating system):
 
-On Linux or Mac:  
+#### {.mac} 
+<u>On Linux or Mac:</u>  
 
 `docker run -it --rm -v "$(pwd)":/home/app/covidsp hopkinsidd/covidscenariopipeline`  
 
-On Windows:    
+####
+
+#### {.windows} 
+<u>On Windows: </u>   
 
 `docker run -it --rm -v %CD%:/home/app/covidsp hopkinsidd/covidscenariopipeline`  
+
+####
 
 The `-it` flag creates an interactive tty to allow us to run commands in the container.
 
@@ -384,15 +381,25 @@ You will see lots of output printed to the screen.
 
 5) We also need to mount the COVIDScenarioPipeline files in the Docker. To do this we will need Terminal2 again. (If you closed it earlier, no worries, just create another new terminal)
 
-Then run the following command on Linux or Mac:
+Then run the following command:
+
+#### {.mac} 
+<u>On Linux or Mac:</u>  
 
 `docker run -it --rm -v "$(pwd)":/home/app/covidsp -v "COVIDScenarioPipeline":/home/app/covidsp/COVIDScenarioPipeline hopkinsidd/covidscenariopipeline`
 
-Or run the following command on Windows:   (need to check this one... maybe no quotes???)   
+####
+
+Help note: I need someone to check this one... maybe no quotes???  
+
+#### {.windows}
+<u>On Windows:</u> 
 
 `docker run -it --rm -v %CD%::/home/app/covidsp -v "COVIDScenarioPipeline":/home/app/covidsp/COVIDScenarioPipeline hopkinsidd/covidscenariopipeline`
 
-6) We also need some R packages installed here: (THINK WE NEED THIS BUT NOT SURE)
+####
+
+6) We also need some R packages installed here:
 `Rscript COVIDScenarioPipeline/local_install.R`
 
 
@@ -431,10 +438,10 @@ knitr::include_graphics(here::here("img","Key.png"))
 ```
 
 
-After you fill out the information and press the "Submit Key Request" button, you will receive a message like this:
+After you fill out the information and press the "Submit Key Request" button, you will receive a message that your request has been succesfully submitted and to check your email about instructions on how to activate your new key.
 
-```{r, echo = FALSE, out.width="700px", fig.align='center'}
-knitr::include_graphics(here::here("img","KeyMessage.png"))
+```{r, echo = FALSE, out.width="900px", out.height= "30px", dpi = 96, fig.align='center'}
+#knitr::include_graphics(here::here("img","KeyMessage.png"))
 ```
 
 Check your email for an email to acctivate your API key.  
@@ -509,7 +516,7 @@ knitr::include_graphics(here::here("img","shpDirectory.png"))
 ## **Edit the rest of the Config file**
 
 The config file `config.yml` controls all of the options for running the pipeline that are currently available.
-More details can be found here:https://github.com/HopkinsIDD/COVID19_Minimal/wiki/Config-File-Options.
+More details can be found [here](https://github.com/HopkinsIDD/COVID19_Minimal/wiki/Config-File-Options).
 
 Again, to edit the config file, you can find the file named `config.yml` in the Files pane of RStudio and click on the file name to open it in the RStudio editor.
 
@@ -523,7 +530,7 @@ Either way, the first thing to edit is the first line that is not a comment - th
 
 Change this line to say FALSE instead of TRUE:
 
-```{r, echo = FALSE, out.width="700px", fig.align='center'}
+```{r, echo = FALSE, out.width="600px", fig.align='center'}
 knitr::include_graphics(here::here("img","config_1st.png"))
 ```
 
@@ -562,7 +569,8 @@ See here for details: https://github.com/HopkinsIDD/COVID19_Minimal/wiki/Getting
 
 ***
 
-## **Build and Run**
+## **Build and Run**  
+
 1. `cd /home/app/covidsp/` 
 2. `Rscript COVIDScenarioPipeline/R/scripts/make_makefile.R -c config.yml`
 3. `mkdir notebooks`
@@ -581,7 +589,8 @@ knitr::include_graphics(here::here("img","HI_report.png"))
 13.`make`
 14. 
 
-### If you want to rerun 
+### If you want to rerun   
+
 1.`cd /home/app/covidsp/`  
 2. `ls -l`  
 3. `mv .files .oldfiles`  
@@ -644,6 +653,44 @@ knitr::include_graphics(here::here("img","HI_report.png"))
 <!-- #### -->
 
 
+## **New to GitHub**
+
+If you already have a GitHub account, you can skip this section and move onto the [**Getting Started**] section.
+
+### What is GitHub?
+
+GitHub is a site that allows users to **host** and **manage** code and data files. Thus, you can **store** your code on the web so that you and others can easily access it (and so that is safe if something happens to your computer!).
+
+It is especailly useful for what is called [version control](https://en.wikipedia.org/wiki/Version_control){target="_blank"} which allows you to **track changes** to documents overtime. 
+
+So although it is intended for version control of code, you can actually use GitHub for version control of many types of documents.
+
+### Why do I need an account?
+
+By signing up for an account you can easily access up-to-date files and code for the **COVIDScenarioPipeline** to allow you to easily run the pipeline on your data.
+
+Better yet, if you learn more about GitHub, you can also use your account to save the files and code for your analysis and track changes over time. You can share your analysis privately with just your team or you can even make it public for others to use.
+
+To learn more about GitHub see [here](https://guides.github.com/activities/hello-world/){target="_blank"}.
+
+
+### Create a GitHub Account: 
+
+1) Click this [link](https://github.com/)  
+
+You will see a page that looks something like this:  
+```{r, echo = FALSE, out.width="400px", fig.align='center'}
+knitr::include_graphics(here::here("img","GitHub.png"))
+```
+
+2) Fill out a username (any name that works for you), email, and password  
+3) Click the green "sign up for GitHub" button  
+
+
+***
+
+
+
 ## **New to R or RStudio**
 *** 
 
@@ -703,12 +750,15 @@ You will see a page that looks something like this:
 ```{r, echo = FALSE, out.width="400px", fig.align='center'}
 knitr::include_graphics(here::here("img","Docker.png"))
 ```
+
 2) Fill out a Docker ID (any name that works for you), email, and password  - click that you are not a robot   
 3) Click the blue "Sign Up" button  
 4) You will be taken to a new window - Select the free Community Docker Plan 
+
 ```{r, echo = FALSE, out.width="400px", fig.align='center'}
 knitr::include_graphics(here::here("img","FreeDocker.png"))
 ```
+
 5) Verify your account through your email  
 6) This will take you to a new window that looks like this:
 
@@ -719,6 +769,7 @@ knitr::include_graphics(here::here("img","DockerDesktop.png"))
 Click on "Get started with Docker Desktop"
 
 7) This will take you to a window with an image like this which should have a button below for downloading Docker Desktop on your computer:  
+
 ```{r, echo = FALSE, out.width="400px", fig.align='center'}
 knitr::include_graphics(here::here("img","DockerDesktopDownload.png"))
 ```

@@ -2,7 +2,7 @@ li.toctree-l2:first-child {
     display: none;
 }
 
-.reference_block {
+.mac {
     margin: .2em;
     padding: .2em;
     border: 1px solid black;
@@ -12,12 +12,12 @@ li.toctree-l2:first-child {
     font-weight: bold;
 }
 
-.question_block {
+.linux {
     margin: .2em;
     padding: .2em;
     border: 1px solid black;
     border-radius: 5px;
-    background: #1E90FF;
+    background: #000000;
     color: white;
     font-weight: bold;
 }
@@ -31,8 +31,19 @@ li.toctree-l2:first-child {
     color: white;
     font-weight: bold;
 }
-.blue-outline {
-   background-color: #1E90FF;
+.windows {
+   margin: .2em;
+    padding: .2em;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #006666;
+    color: white;
+    font-weight: bold;
+}
+
+
+.green-outline {
+   background-color: #00ff99;
    padding:10px;
    display: inline-block;
 }
