@@ -102,9 +102,9 @@ If you are new to GitHub, please see the [**New to GitHub**] section before proc
 
 There are two separate GitHub repositories that users need to clone/download:
 
-One is the [**HopkinsIDD/COVID19_Minimal template**](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} repository, which is a template spatial repository for location-specific files. This will allow us to run the model for a specific location. We will call the directory containing these files and scripts `LocationX` and prepares the data with a directory structure in a way that the model expects.
+One is the [**HopkinsIDD/COVID19_Minimal template**](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"} repository, which is a template spatial repository for location-specific files. This will allow us to run the model for a specific location. We will call the directory containing these files and scripts `COVID_Loc_X`. 
 
-The second is the [**HopkinsIDD/COVIDScenarioPipeline**](https://github.com/HopkinsIDD/COVIDScenarioPipeline){target="_blank"} repository, which we will download inside the `LocationX` directory. This is where the scripts and files to actually run the model will be located. 
+The second is the [**HopkinsIDD/COVIDScenarioPipeline**](https://github.com/HopkinsIDD/COVIDScenarioPipeline){target="_blank"} repository, which we will download inside the `COVID_Loc_X` directory. This is where the scripts and files to actually run the model will be located. 
 
 First navigate to the Johns Hopkins IDD **HopkinsIDD/COVID19_Minimal template**  repository: by clicking [here.](https://github.com/HopkinsIDD/COVID19_Minimal){target="_blank"}
 
