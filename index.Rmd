@@ -137,7 +137,7 @@ Great! Now you have a repository on GitHub which contains all the current [**Hop
 
 It should look something like this:
 
-```{r, echo = FALSE, out.width="400px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center'}
 knitr::include_graphics(here::here("img","YourRepo.png"))
 ```
 
@@ -149,7 +149,7 @@ Leave this open! You will want this for the next step!
 
 1) Press the green "Clone or download" button in your github repository that you just created
 
-```{r, echo = FALSE, out.width="400px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center'}
 knitr::include_graphics(here::here("img","YourRepoClone.png"))
 ```
 
@@ -605,62 +605,6 @@ knitr::include_graphics(here::here("img","HI_report.png"))
 2. `ls -l`  
 3. `mv .files .oldfiles`  
 4. `make`  
-
-(hmmm may need to remove other old files... like shp files etc...)
-
-
-
-<!-- We will begin by loading the packages that we will need: -->
-
-<!-- ```{r} -->
-<!-- library(here) -->
-<!-- library(readr) -->
-<!-- library(dplyr) -->
-<!-- ``` -->
-
-
-<!--  Package   | Use                                                                          -->
-<!-- ---------- |------------- -->
-<!-- [here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data -->
-<!-- [readr](https://readr.tidyverse.org/){target="_blank"}      | to import the CSV file data -->
-
-
-
-
-<!-- ## **What are the data?** -->
-<!-- ***  -->
-
-<!-- If you want to make a table about variable info: -->
-
-<!-- Variable   | Details                                                                         -->
-<!-- ---------- |------------- -->
-<!-- **variable1**  | Variable info  <br> -- more details <br> -- more detials <br>  **Example**: Content content   -->
-<!-- **variable2**  | Variable info  <br> -- more details <br> -- more detials <br>  **Example**: Content content -->
-
-<!-- ## **Data Import** -->
-<!-- ***  -->
-
-<!-- Put files in docs directory and use `here` package. -->
-
-<!-- ```{r} -->
-<!-- pm <-readr::read_csv(here("docs", "pm25_data.csv")) -->
-<!-- ``` -->
-
-<!-- ## **Data Exploration and Wrangling** -->
-<!-- ***  -->
-
-<!-- We will also use the `%>%` pipe which can be used to define the input for later sequential steps. This will make more sense when we have multiple sequential steps using the same data object. To use the pipe notation we need to install and load dplyr as well. -->
-
-<!-- Scrollable content: -->
-
-<!-- #### {.scrollable } -->
-<!-- ```{r} -->
-<!-- # Scroll through the output! -->
-<!-- pm %>%  -->
-<!--   distinct(state) %>% -->
-<!--   print(n = 1e3) -->
-<!-- ``` -->
-<!-- #### -->
 
 
 ## **New to GitHub**
