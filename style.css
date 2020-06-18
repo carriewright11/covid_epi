@@ -69,7 +69,7 @@ li.toctree-l2:first-child {
 .outline {
    padding: .1em;
    border: 1px solid black;
-   background-color: #000000;
+   background-color: #808080;
    display: inline-block;
 }
 
